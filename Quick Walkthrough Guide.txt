@@ -1,0 +1,24 @@
+Login Screen (Screen 1):
+
+What to Do:
+Enter admin in both the username and password fields.
+Outcome:
+Tap the Login button to be redirected to the Search Items screen.
+Search Items Screen (Screen 2):
+
+What to Do:
+Use the search form to filter items by Part No or Description, or simply tap on an item from the list.
+Outcome:
+Tapping an item opens the EPC Codes screen with that item's details.
+EPC Codes Screen (Screen 3):
+
+What to Do:
+At the top, you’ll see the selected item’s Part No and Description. Below, a list of EPC codes (unique 24-character codes) is displayed.
+Outcome:
+Tapping on any EPC code navigates you to the EPC Detail screen.
+EPC Detail Screen (Screen 4):
+
+What to Do:
+View the signal icon (displaying WiFi-like curved waves) and a randomly generated number that simulates an assigned value.
+Outcome:
+Press Close to go back to the EPC Codes screen.

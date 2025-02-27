@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Items</title>
+  <style>
+    /* Global reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #ccc;
+      font-family: Arial, sans-serif;
+    }
+    /* iPhone 13 frame */
+    .device-frame {
+      width: 390px;
+      height: 844px;
+      border: 12px solid #333;
+      border-radius: 40px;
+      margin: 20px auto;
+      background: #000;
+      overflow: hidden;
+    }
+    .device-screen {
+      width: 100%;
+      height: 100%;
+      background: orange;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    /* Container styling */
+    .container {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 350px;
+      margin: 0 auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    .radio-group {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 10px;
+    }
+    .radio-group label {
+      font-size: 14px;
+    }
+    input[type="text"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .list-container {
+      margin-top: 20px;
+    }
+    .item {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .item:last-child {
+      border-bottom: none;
+    }
+    .item strong {
+      display: inline-block;
+      width: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="device-frame">
+    <div class="device-screen">
+      <div class="container">
+        <h2>Search Items</h2>
+        <form id="searchForm">
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="searchBy" value="part" checked> Part No
+            </label>
+            <label>
+              <input type="radio" name="searchBy" value="description"> Description
+            </label>
+          </div>
+          <input type="text" id="searchText" placeholder="Enter search term" required>
+          <button type="submit">Search</button>
+        </form>
+        <div class="list-container">
+          <!-- Each item includes data attributes for part and description -->
+          <div class="item" data-part="PN1" data-description="Item 1"><strong>PN1:</strong> Item 1</div>
+          <div class="item" data-part="PN2" data-description="Item 2"><strong>PN2:</strong> Item 2</div>
+          <div class="item" data-part="PN3" data-description="Item 3"><strong>PN3:</strong> Item 3</div>
+          <div class="item" data-part="PN4" data-description="Item 4"><strong>PN4:</strong> Item 4</div>
+          <div class="item" data-part="PN5" data-description="Item 5"><strong>PN5:</strong> Item 5</div>
+          <div class="item" data-part="PN6" data-description="Item 6"><strong>PN6:</strong> Item 6</div>
+          <div class="item" data-part="PN7" data-description="Item 7"><strong>PN7:</strong> Item 7</div>
+          <div class="item" data-part="PN8" data-description="Item 8"><strong>PN8:</strong> Item 8</div>
+          <div class="item" data-part="PN9" data-description="Item 9"><strong>PN9:</strong> Item 9</div>
+          <div class="item" data-part="PN10" data-description="Item 10"><strong>PN10:</strong> Item 10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Search filter: When the form is submitted, filter the items
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const searchBy = document.querySelector('input[name="searchBy"]:checked').value;
+      const searchText = document.getElementById('searchText').value.trim().toLowerCase();
+      document.querySelectorAll('.item').forEach(function(item) {
+        const value = item.getAttribute('data-' + searchBy).toLowerCase();
+        item.style.display = value.includes(searchText) ? "" : "none";
+      });
+    });
+    // When an item is clicked, navigate to screen3.html with parameters
+    document.querySelectorAll('.item').forEach(function(item) {
+      item.addEventListener('click', function() {
+        const part = item.getAttribute('data-part');
+        const description = item.getAttribute('data-description');
+        window.location.href = "screen3.html?part=" + encodeURIComponent(part) + "&desc=" + encodeURIComponent(description);
+      });
+    });
+  </script>
+</body>
+</html>
